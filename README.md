@@ -1,25 +1,27 @@
-# Automatización web con SELENIUM + POM + SERENITY BDD
+# Automatización web con SELENIUM + POM + Cucumber + SERENITY BDD
 
-Este proyecto está diseñado para demostrar la implementación de automatización web utilizando Selenium WebDriver con el patrón de diseño Page Object Model (POM) y Serenity BDD para mejorar la legibilidad de los tests y los reportes generados. Se utiliza Gradle como sistema de gestión y construcción de proyectos y Firefox como navegador para las pruebas.
+Este proyecto integra Selenium WebDriver y Serenity BDD con Cucumber para facilitar la escritura de pruebas en un lenguaje descriptivo. Usamos el patrón de diseño Page Object Model (POM) para mantener el código de las pruebas organizado y mantenible. Gradle se emplea como gestor de proyectos y, aunque las pruebas están configuradas para ejecutarse en Firefox por defecto, el navegador puede cambiarse fácilmente.
 
 ## Características
 
-- **Selenium WebDriver:** Para interactuar con los navegadores web.
-- **Page Object Model (POM):** Patrón de diseño que promueve la reutilización de código y reduce la duplicación.
-- **Serenity BDD:** Marco de trabajo que facilita la escritura de pruebas aceptables y mantenibles.
-- **Gradle:** Sistema de automatización que compila, prueba y despliega el código.
-- **Navegador Firefox:** Las pruebas se ejecutan en el navegador Firefox.
+- **Selenium WebDriver:** Permite la interacción automática con navegadores web.
+- **Page Object Model (POM):** Mejora la mantenibilidad del código de prueba.
+- **Cucumber:** Facilita la descripción de pruebas en lenguaje natural.
+- **Serenity BDD:** Ofrece reportes detallados y facilita la integración con Selenium y Cucumber.
+- **Gradle:** Automatiza la construcción y gestión del proyecto.
+- **Navegador Firefox:** Configurado por defecto para la ejecución de pruebas.
 
 ## Requisitos
 
-Para utilizar este proyecto, necesitarás tener instalado lo siguiente:
+Asegúrate de tener instalado:
 
-- Java JDK 11 o superior
-- Gradle 6.0 o superior
-- Firefox y [GeckoDriver](https://github.com/mozilla/geckodriver/releases) compatible con tu versión de Firefox
-- Una IDE de tu preferencia (se recomienda IntelliJ IDEA o Eclipse)
+- Java JDK 11+
+- Gradle 6.0+
+- Firefox y [GeckoDriver](https://github.com/mozilla/geckodriver/releases)
+- IDE de tu elección (recomendado IntelliJ IDEA o Eclipse)
 
-## Configuración del proyecto
+  
+## Configuración
 
-Para configurar el proyecto en tu entorno local, sigue estos pasos:
-
+Antes de ejecutar el proyecto, es importante asegurar que todas las dependencias estén actualizadas.
+Esto se puede hacer ejecutando el siguiente comando en la terminal:

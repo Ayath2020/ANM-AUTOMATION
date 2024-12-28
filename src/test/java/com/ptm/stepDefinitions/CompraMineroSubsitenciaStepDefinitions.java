@@ -1,15 +1,15 @@
 package com.ptm.stepDefinitions;
 
 import com.ptm.steps.CompraAMineroSubsistenciaStep;
+import com.ptm.steps.ConfirmarCompraMineroSubsistenciaSteps;
 import com.ptm.steps.IniciosesionStep;
 import com.ptm.steps.ValidacionSteps;
 import io.cucumber.java.es.*;
 import io.cucumber.datatable.DataTable;
 import net.thucydides.core.annotations.Steps;
 
-import javax.xml.crypto.Data;
 
-public class ComprarArticuloStepDefinitions {
+public class CompraMineroSubsitenciaStepDefinitions {
     @Steps
     IniciosesionStep iniciosesionStep;
     @Steps
@@ -17,35 +17,45 @@ public class ComprarArticuloStepDefinitions {
     @Steps
     CompraAMineroSubsistenciaStep compraAMineroSubsistenciaStep;
 
-    @Dado("que el usuario ingrese a la pagina web")
-    public void queElUsuarioIngreseALaPaginaWeb() {
+    @Steps
+    ConfirmarCompraMineroSubsistenciaSteps confirmarCompraMineroSubsistenciaSteps;
+
+    @Dado("que el usuario ha iniciado sesion exitosamente")
+    public void queElUsuarioHaIniciadoSesionExitosamente(DataTable dataTable) throws InterruptedException{
         iniciosesionStep.open();
-    }
-
-    @Cuando("ingrese las credenciales de inicio de sesion correctamente")
-    public void ingreseLasCredencialesDeInicioDeSesionCorrectamente(DataTable dataTable) throws InterruptedException {
         iniciosesionStep.enterCredentials(dataTable);
-        validacionSteps.validacionSesion();
     }
 
-    @Cuando("diligencie los campos obligatorios del primer formulario con los datos del vendedor")
-    public void diligencieLosCamposObligatoriosDelPrimeroFormularioConLosDatosDelVendedor(DataTable dataTable) throws InterruptedException{
+    @Cuando("accede al formulario de compra y diligencia los campos obligatorios")
+    public void accedeAlFormularioDeCompraYDiligenciaLosCamposObligatorios(DataTable dataTable) throws InterruptedException {
         compraAMineroSubsistenciaStep.fill_ottm_temporary_storage_b1(dataTable);
-    }
-    @Cuando("se habilite la opcion de guardar transaccion")
-    public void seHabiliteLaOpcionDeGuardarTransaccion() {
+        compraAMineroSubsistenciaStep.fill_ottm_temporary_storage_b2();
 
     }
-    @Cuando("Se presente el mensaje confirmando la transaccion exitosa y el envio del OTP")
-    public void sePresenteElMensajeConfirmandoLaTransaccionExitosaYElEnvioDelOTP() {
+
+    @Entonces("se debe habilitar la opción de guardar transacción")
+    public void seDebeHabilitarLaOpciónDeGuardarTransacción() {
+        confirmarCompraMineroSubsistenciaSteps.authenticatedseller();
 
     }
-    @Cuando("se consulte el OTP en BD para ingresarlo y confirmar la transacción")
-    public void seConsulteElOTPEnBDParaIngresarloYConfirmarLaTransacción() {
-
+    @Entonces("se debe mostrar un mensaje confirmando el envío del OTP")
+    public void seDebeMostrarUnMensajeConfirmandoElEnvíoDelOTP() {
+        validacionSteps.validarMensajeDeEnvioOTP();
     }
-    @Entonces("Se debe presentar el mensaje confirmando que se finalizo exitosamente la venta")
-    public void seDebePresentarElMensajeConfirmandoQueSeFinalizoExitosamenteLaVenta() {
 
+    @Cuando("ingrese el OTP en el campo correspondiente  se debe confirmar la transacción")
+    public void ingreseElOTPEnElCampoCorrespondienteSeDebeConfirmarLaTransacción() {
+        confirmarCompraMineroSubsistenciaSteps.ingresarOTP();
+        confirmarCompraMineroSubsistenciaSteps.confirmarTransaccion();
     }
+
+    @Entonces("se debe mostrar un mensaje indicando que la venta se finalizó exitosamente")
+    public void seDebeMostrarUnMensajeIndicandoQueLaVentaSeFinalizóExitosamente() {
+            validacionSteps.validarMensajeDeConfirmacion();
+    }
+
+
+
+
 }
+
